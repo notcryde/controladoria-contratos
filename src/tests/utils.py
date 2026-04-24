@@ -6,7 +6,7 @@ def extract(pdf_path):
         return ' '.join([p.extract_text(x_tolerance=3) or '' for p in pdf.pages])
 
 def raw_text(pdf_path):
-    print(f'\n--- RAW TEXT: {pdf_path.name} ---\n')
+    print(f'\n--- RAW TEXT: {pdf_path} ---\n')
     print(extract(pdf_path))
 
 def print_section(title, patterns, text, width):

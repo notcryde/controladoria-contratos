@@ -1,15 +1,15 @@
 from document_processor import process_af, process_empenho, process_solicitacao, process_af_tables, process_nf
 from utils import raw_text
-import config as cf
+from paths import NF_SAMPLES
 
 if __name__ == '__main__':
     print('1 - Empenho')
     print('2 - AF')
     print('3 - Solicitação')
-    print('1 - Nota Fiscal')
-    opt = int(input('Selecione uma opção:'))
+    print('4 - Nota Fiscal')
+    print('5 - Texto Bruto\n')
 
-    print('\n\n')
+    opt = int(input('Selecione uma opção:'))
 
     if opt == 1:
         process_empenho()
@@ -18,10 +18,10 @@ if __name__ == '__main__':
     elif opt == 3:
         process_solicitacao()
     elif opt == 4:
-        raw_text(cf.NF_SAMPLES / 'BAIXA NF 5891698 COMEVAP.pdf')
-    elif opt == 5:
-        process_af_tables()
-    elif opt == 6:
         process_nf()
+    elif opt == 5:
+        raw_text(f'{NF_SAMPLES}/BAIXA NF 5891698 COMEVAP.pdf')
+    elif opt == 6:
+        process_af_tables()
     else:
         print('Tipo de documento não implementado.')
