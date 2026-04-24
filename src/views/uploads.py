@@ -13,7 +13,7 @@ from src.utils.constants import (
     LABEL_BTN_UPLOAD
 )
 from src.utils.regex_patterns import (
-    REGEX_SOLIC_CONS, REGEX_SOLIC_COMPR, EMP_PATTERNS, AF_PATTERNS, NF_PATTERNS
+    REGEX_SOLIC_CONS, REGEX_SOLIC_COMPR, REGEX_EMP, REGEX_AF, REGEX_NF
 )
 from src.core.database import save_document, get_solicitacoes_por_tipo
 from src.utils.pdf_parser import process_files
@@ -21,9 +21,9 @@ from src.utils.pdf_parser import process_files
 DOCUMENT_MAPPING = {
     'Solicitação de Consumo': ('solicitacoes_consumo', REGEX_SOLIC_CONS),
     'Solicitação de Compras': ('solicitacoes_compras', REGEX_SOLIC_COMPR),
-    'Empenho': ('empenhos', EMP_PATTERNS),
-    'Autorização de Fornecimento': ('autorizacoes', AF_PATTERNS),
-    'Nota Fiscal': ('notas_fiscais', NF_PATTERNS)
+    'Empenho': ('empenhos', REGEX_EMP),
+    'Autorização de Fornecimento': ('autorizacoes', REGEX_AF),
+    'Nota Fiscal': ('notas_fiscais', REGEX_NF)
 }
 
 st.header('Upload de Documentos')
