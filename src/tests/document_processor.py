@@ -1,5 +1,6 @@
 from core.config import AF_SAMPLES, EMP_SAMPLES, SOLIC_SAMPLES, NF_SAMPLES
 from tests.parsers import parse_af, parse_empenho, parse_solicitacao, parse_nf
+from tests.utils import extract, extract_tables_from_pdf
 
 def process_nf():
     if not NF_SAMPLES.exists():
