@@ -26,8 +26,6 @@ Módulo dedicado para análise de saúde financeira dos contratos:
 - Monitoramento de prazos de vigência remanescentes.
 - Detalhamento técnico por item de material/serviço, permitindo rastrear o que já foi entregue e o que resta a executar.
 
----
-
 ## Arquitetura Técnica
 
 O projeto foi construído seguindo princípios de modularização e separação de preocupações (SoC):
@@ -37,8 +35,6 @@ O projeto foi construído seguindo princípios de modularização e separação 
 - **Extração de PDF:** Pdfplumber para análise de texto e tabelas em documentos PDF.
 - **Persistência:** SQLite3 para armazenamento local com suporte a integridade referencial (Foreign Keys).
 - **Interface de Tabelas:** Streamlit-AgGrid para componentes de grade de alta performance.
-
----
 
 ## Estrutura do Projeto
 
@@ -59,8 +55,6 @@ sedis-controladoria/
 ├── requirements.txt      # Dependências do projeto
 └── streamlit_app.py      # Ponto de entrada da aplicação
 ```
-
----
 
 ## Instalação e Execução
 
@@ -105,13 +99,9 @@ Para manter a integridade referencial do banco de dados, os documentos devem ser
 3.  **Autorizações de Fornecimento (AF):** Documento que formaliza o pedido ao fornecedor.
 4.  **Notas Fiscais:** Registra a execução e consome o o valor empenhado.
 
----
-
 ## Segurança e Acesso
 
 A aplicação conta com uma camada básica de autenticação gerenciada via `st.session_state`. O acesso às páginas de gestão e upload é restrito a usuários logados, garantindo que as operações de escrita no banco de dados sejam controladas.
-
----
 
 ## Manutenção e Contribuição
 
