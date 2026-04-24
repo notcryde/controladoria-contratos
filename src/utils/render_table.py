@@ -23,14 +23,14 @@ def render_table(dataframe, table_columns, enable_selection=False, key=None):
     monetary_keywords = ['Valor', 'Total', 'Liberação', 'Unitário', 'Saldo', 'Executado', 'Empenhado']
     
     for col in dataframe.columns:
-        if any(word in col for word in monetary_keywords):
+        if any(word in col for word in monetary_keywords) and 'Qtde' not in col:
             grid_builder.configure_column(
                 col, 
                 valueFormatter="x != null ? Number(x).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}) : 'R$ 0,00'"
             )
 
     if enable_selection and 'Ações' in table_columns:
-        grid_builder.configure_selection(selection_mode="single", use_checkbox=False)
+        grid_builder.configure_selection(selection_mode='single', use_checkbox=False)
         
         btn_cell_renderer = JsCode('''
             class BtnCellRenderer {

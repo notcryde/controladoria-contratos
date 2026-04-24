@@ -100,9 +100,12 @@ EXEC_NF_HEADERS = [
 MODAL_ACOMP_EXEC_HEADERS = [
     'Cód. Material', 
     'Descrição', 
-    'Total Empenhado', 
-    'Total Executado',
-    'Saldo Atual'
+    'Qtde Empenhado',
+    'Qtde Executado',
+    'Valor Empenhado', 
+    'Valor Executado',
+    'Saldo (Qtde)',
+    'Saldo (Valor)'
 ]
 
 # --- UI Constants ---
