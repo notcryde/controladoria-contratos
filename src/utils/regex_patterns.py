@@ -102,3 +102,12 @@ REGEX_NF = {
     'Nº AF': r'Autorização:\s*(\d+/\d+)',
     'Nº Empenho': r'Empenho:\s*(\d+/\d+)',
 }
+
+# Padrões de RegEx: Itens das Notas Fiscais
+REGEX_NF_ITEMS = {
+    'Cód. Material': r"^\d+\s+([\d.]+)",
+    'Descrição': r"^\d+\s+[\d.]+\s+(.+?)\s+\d+,\d{3}",
+    'Qtde': r"(\d+,\d{3})",
+    'Vlr. Unitário': r"\d+,\d{3}\s+([\d.]+,\d{2})",
+    'Valor Executado': r"([\d.]+,\d{2})\s*$"
+}
