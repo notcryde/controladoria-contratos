@@ -1,6 +1,9 @@
 import streamlit as st
-from src.core.auth import render_login, handle_logout
-from src.core.database import initialize_database
+
+st.set_page_config(layout="wide", page_title="SEDIS Controladoria")
+
+from src.utils.auth import render_login, handle_logout
+from src.utils.database import initialize_database
 
 initialize_database()
 
