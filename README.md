@@ -41,19 +41,19 @@ O projeto foi construído seguindo princípios de modularização e separação 
 ```text
 sedis-controladoria/
 ├── src/
-│   ├── utils/            # Lógica de negócio, banco de dados e processamento
-│   │   ├── database.py   # Operações CRUD e persistência SQLite
-│   │   ├── pdf_parser.py # Motor de extração de texto e lógica de processamento
-│   │   ├── regex_patterns.py # Padrões de extração para cada tipo de documento
-│   │   └── render_table.py   # Configurações globais das grades AgGrid
-│   ├── views/            # Páginas da aplicação Streamlit
-│   │   ├── uploads.py    # Interface de entrada de novos documentos
-│   │   ├── gestao_documental.py # Visualização geral da base de dados
+│   ├── utils/                        # Lógica de negócio, banco de dados e processamento
+│   │   ├── database.py               # Operações CRUD e persistência SQLite
+│   │   ├── pdf_parser.py             # Motor de extração de texto e lógica de processamento
+│   │   ├── regex_patterns.py         # Padrões de extração para cada tipo de documento
+│   │   └── render_table.py           # Configurações globais das grades AgGrid
+│   ├── views/                        # Páginas da aplicação Streamlit
+│   │   ├── uploads.py                # Interface de entrada de novos documentos
+│   │   ├── gestao_documental.py      # Visualização geral da base de dados
 │   │   └── execucao_notas_fiscais.py # Relatórios de execução financeira
-│   └── tests/            # Amostras e scripts de validação de parsers
-├── controladoria.db      # Banco de dados SQLite
-├── requirements.txt      # Dependências do projeto
-└── streamlit_app.py      # Ponto de entrada da aplicação
+│   └── tests/                        # Amostras e scripts de validação de parsers
+├── controladoria.db                  # Banco de dados SQLite
+├── requirements.txt                  # Dependências do projeto
+└── streamlit_app.py                  # Ponto de entrada da aplicação
 ```
 
 ## Instalação e Execução
