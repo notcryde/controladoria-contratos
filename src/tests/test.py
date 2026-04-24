@@ -1,6 +1,6 @@
 from document_processor import process_af, process_empenho, process_solicitacao, process_af_tables, process_nf
 from utils import raw_text
-from paths import NF_SAMPLES
+from paths import NF_SAMPLES, AF_SAMPLES
 
 if __name__ == '__main__':
     print('1 - Empenho')
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     elif opt == 4:
         process_nf()
     elif opt == 5:
-        pdf_file = NF_SAMPLES / 'BAIXA_AF_4290.pdf'
+        pdf_file = AF_SAMPLES / 'AF-675-26.pdf'
         raw_text(str(pdf_file))
     elif opt == 6:
         process_af_tables()
