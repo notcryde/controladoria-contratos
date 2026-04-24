@@ -1,8 +1,8 @@
 from paths import AF_SAMPLES, EMP_SAMPLES, SOLIC_SAMPLES, NF_SAMPLES
-from parsers import parse_af, parse_empenho, parse_solicitacao, parse_nf
+from parsers import parse_af, parse_empenho, parse_solicitacao, parse_nf, parse_nf_items
 from utils import extract, extract_tables_from_pdf
 
-def process_nf():
+def process_nf(opt=1):
     if not NF_SAMPLES.exists():
         print(f'Pasta de Notas Fiscais não encontrada: {NF_SAMPLES}')
         return
@@ -11,16 +11,20 @@ def process_nf():
         print(f' NOTA FISCAL: {pdf_path.name}'.center(60))
         print(f'{"="*60}')
         text = extract(pdf_path)
-        parse_nf(text)
+
+        if opt == 0:
+            parse_nf(text)
+        else:
+            parse_nf_items(text)
 
 def process_af():
     if not AF_SAMPLES.exists():
         print(f'Pasta de AF não encontrada: {AF_SAMPLES}')
         return
     for pdf_path in AF_SAMPLES.glob('*.pdf'):
-        print(f'\n{'='*60}')
+        print(f'\n{"="*60}')
         print(f' AF: {pdf_path.name}'.center(60))
-        print(f'{'='*60}')
+        print(f'{"="*60}')
         text = extract(pdf_path)
         parse_af(text)
 
@@ -29,9 +33,9 @@ def process_empenho():
         print(f'Pasta de Empenhos não encontrada: {EMP_SAMPLES}')
         return
     for pdf_path in EMP_SAMPLES.glob('*.pdf'):
-        print(f'\n{'='*60}')
+        print(f'\n{"="*60}')
         print(f' EMPENHO: {pdf_path.name}'.center(60))
-        print(f'{'='*60}')
+        print(f'{"="*60}')
         text = extract(pdf_path)
         parse_empenho(text)
 
@@ -40,9 +44,9 @@ def process_solicitacao():
         print(f'Pasta de Solicitações não encontrada: {SOLIC_SAMPLES}')
         return
     for pdf_path in SOLIC_SAMPLES.glob('*.pdf'):
-        print(f'\n{'='*60}')
+        print(f'\n{"="*60}')
         print(f' SOLICITAÇÃO: {pdf_path.name}'.center(60))
-        print(f'{'='*60}')
+        print(f'{"="*60}')
         text = extract(pdf_path)
         parse_solicitacao(text)
         
@@ -72,6 +76,9 @@ def process_af_tables():
                     filtered_row = [row[i] if i < len(row) else '' for i in selected_indices]
                     filtered_table.append(filtered_row)
                 
+                if not filtered_table:
+                    continue
+
                 col_widths = [max(len(str(r[c])) for r in filtered_table) for c in range(len(selected_indices))]
                 
                 print(f'\nARQUIVO: {pdf_path.name}')

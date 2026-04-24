@@ -1,5 +1,5 @@
 from utils import print_section
-from regex_patterns import REGEX_AF, REGEX_EMP, REGEX_NF, REGEX_SOLIC_COMPR, REGEX_SOLIC_CONS
+from regex_patterns import REGEX_AF, REGEX_EMP, REGEX_NF, REGEX_SOLIC_COMPR, REGEX_SOLIC_CONS, REGEX_NF_ITEMS
 
 def parse_af(text):
     all_labels = list(REGEX_AF.keys())
@@ -39,3 +39,8 @@ def parse_nf(text):
     all_labels = list(REGEX_NF.keys())
     label_width = max(len(label) for label in all_labels) + 2
     print_section('DADOS DA NOTA FISCAL', REGEX_NF, text, label_width)
+
+def parse_nf_items(text):
+    all_labels = list(REGEX_NF_ITEMS.keys())
+    label_width = max(len(label) for label in all_labels) + 2
+    print_section('DADOS DA NOTA FISCAL', REGEX_NF_ITEMS, text, label_width)

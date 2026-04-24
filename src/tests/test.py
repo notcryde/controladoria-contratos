@@ -7,9 +7,14 @@ if __name__ == '__main__':
     print('2 - AF')
     print('3 - Solicitação')
     print('4 - Nota Fiscal')
-    print('5 - Texto Bruto\n')
+    print('5 - Texto Bruto')
+    print('6 - Tabelas de AF\n')
 
-    opt = int(input('Selecione uma opção:'))
+    try:
+        opt = int(input('Selecione uma opção: '))
+    except ValueError:
+        print('Por favor, insira um número válido.')
+        exit()
 
     if opt == 1:
         process_empenho()
@@ -20,7 +25,8 @@ if __name__ == '__main__':
     elif opt == 4:
         process_nf()
     elif opt == 5:
-        raw_text(f'{NF_SAMPLES}/BAIXA NF 5891698 COMEVAP.pdf')
+        pdf_file = NF_SAMPLES / 'BAIXA_AF_4290.pdf'
+        raw_text(str(pdf_file))
     elif opt == 6:
         process_af_tables()
     else:

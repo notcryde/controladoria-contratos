@@ -9,10 +9,12 @@ def raw_text(pdf_path):
     print(f'\n--- RAW TEXT: {pdf_path} ---\n')
     print(extract(pdf_path))
 
+import re
+
 def print_section(title, patterns, text, width):
     print(f'\n--- {title} ---')
     for label, regex in patterns.items():
-        match = re.search(regex, text)
+        match = re.search(regex, text, re.MULTILINE)
         if match:
             value = match.group(1).strip().replace('\n', ' ')
             value = value if value else 'N/A'
