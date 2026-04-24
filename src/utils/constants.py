@@ -1,3 +1,5 @@
+# --  Cabeçalhos ---
+
 PAGE_HEADERS = [
     'Upload de Documentos',
     'Gestão Documental',
@@ -13,7 +15,6 @@ SOLIC_COMP_HEADERS = [
     'Nº Processo',
     'Observação',
     'Status',
-    'Prazo Exec.',
     'Forma Exec.',
     'Funcionário',
     'Órgão Financeiro', 
@@ -34,7 +35,6 @@ SOLIC_CONS_HEADERS = [
     'Vigência Final',
     'Nº Processo',
     'Status',
-    'Prazo Exec.',
     'Forma Exec.',
     'Local Entrega',
     'Funcionário',
@@ -62,64 +62,50 @@ EMPENHOS_HEADERS = [
 ]
 
 AF_HEADERS = [
+    'Nº Processo', 
     'Nº AF', 
+    'Nº Empenho',
     'Data', 
     'Valor Empenhado',
     'Vigência Inicial',
     'Vigência Final',
-    'Nº Processo', 
-    'Nº Empenho',
-    'Fonte de Recurso',
     'Objeto',
     'Ano Processo', 
-    'Nº Modalidade',
-    'Ano Modalidade',
     'Modalidade',
     'Contrato/Ano',
-    'Valor Contrato',
-    'Prazo de Entrega',
     'Local de Entrega',
-    'Prazo de Pagamento',
-    'Observacoes',
-    'Total Liberação',
-    'Solicitacoes de Compra',
-    'Solicitacoes de Consumo',
-    'Órgão Solicitante',
-    'Ficha',
-    'Dotacao',
-    'Nº Fornecedor',
     'Nome Fornecedor',
-    'CNPJ',
-    'Fone',
-    'Email',
-    'Contas',
+    'E-mail Fornecedor'
 ]
 
 NOTAS_FISCAIS_HEADERS = [
+    'Nº AF',
+    'Nº Empenho',
     'Nº NF',
     'Data Emissão',
     'Valor Executado',
     'Fornecedor',
-    'Nº AF',
-    'Nº Empenho',
     'Ações',
-]
-
-ACOMP_ITENS_HEADERS = [
-    'Cód. Material',
-    'Descrição Item',
-    'Valor Empenhado',
-    'Valor Executado',
-    'Saldo Atual',
 ]
 
 EXEC_NF_HEADERS = [
     'Nº AF',
     'Total Empenhado',
+    'Total Executado',
     'Saldo Atual',
     'Prazo',
     'Ações'
 ]
+
+MODAL_ACOMP_EXEC_HEADERS = [
+    'Cód. Material', 
+    'Descrição', 
+    'Total Empenhado', 
+    'Total Executado',
+    'Saldo Atual'
+]
+
+# --- UI Constants ---
 
 LABEL_TIPO_DOC = 'Selecione um tipo de documento:'
 LABEL_NUM_PROC = 'Digite o número do processo:'
@@ -151,3 +137,144 @@ TABS_TITLES = [
     'Autorizações de Fornecimento',
     'Notas Fiscais'
 ]
+
+# --- Tabelas - Banco de Dados ---
+
+SOLIC_CONS_TABLE = '''
+    CREATE TABLE IF NOT EXISTS solicitacoes_consumo (
+        "Nº Solicitação" TEXT PRIMARY KEY,
+        "Nº Processo" TEXT,
+        "Data Emissão" TEXT,
+        "Valor Solicitado" REAL,
+        "Ata RP" TEXT,
+        "Vigência Inicial" TEXT,
+        "Vigência Final" TEXT,
+        "Status" TEXT,
+        "Prazo Exec." TEXT,
+        "Forma Exec." TEXT,
+        "Local Entrega" TEXT,
+        "Funcionário" TEXT,
+        "Unidade Solicitante" TEXT,
+        "Órgão Financeiro" TEXT,
+        "Unidade Financeira" TEXT,
+        "Observação" TEXT,
+        "Nome do Fornecedor" TEXT,
+        "CNPJ do Fornecedor" TEXT
+    )
+'''
+
+SOLIC_COMP_TABLE = '''
+    CREATE TABLE IF NOT EXISTS solicitacoes_compras (
+        "Nº Solicitação" TEXT PRIMARY KEY,
+        "Nº Processo" TEXT,
+        "Data Emissão" TEXT,
+        "Valor Solicitado" REAL,
+        "Local Entrega" TEXT,
+        "Objeto" TEXT,
+        "Observação" TEXT,
+        "Status" TEXT,
+        "Prazo Exec." TEXT,
+        "Forma Exec." TEXT,
+        "Funcionário" TEXT,
+        "Órgão Financeiro" TEXT,
+        "Unidade Solicitante" TEXT,
+        "Unidade Financeira" TEXT,
+        "Ação" TEXT,
+        "Gestor Indicado" TEXT,
+        "Legislação" TEXT,
+        "Programa" TEXT
+    )
+'''
+
+EMPENHOS_TABLE = '''
+    CREATE TABLE IF NOT EXISTS empenhos (
+        "Nº Empenho" TEXT PRIMARY KEY,
+        "Nº Processo" TEXT,
+        "Nº Solicitação" TEXT,
+        "Valor Empenhado" REAL,
+        "Órgão Solicitante" TEXT,
+        "Unidade" TEXT,
+        "Ação" TEXT,
+        "Fonte" TEXT,
+        "Nome Fornecedor" TEXT,
+        "CNPJ Fornecedor" TEXT,
+        "Tel. Fornecedor" TEXT,
+        "E-mail Fornecedor" TEXT
+    )
+'''
+
+AF_TABLE = '''
+    CREATE TABLE IF NOT EXISTS autorizacoes (
+        "Nº AF" TEXT PRIMARY KEY,
+        "Nº Empenho" TEXT,
+        "Data" TEXT,
+        "Valor Empenhado" REAL,
+        "Vigência Inicial" TEXT,
+        "Vigência Final" TEXT,
+        "Nº Processo" TEXT,
+        "Fonte de Recurso" TEXT,
+        "Objeto" TEXT,
+        "Ano Processo" TEXT,
+        "Nº Modalidade" TEXT,
+        "Ano Modalidade" TEXT,
+        "Modalidade" TEXT,
+        "Contrato/Ano" TEXT,
+        "Valor Contrato" REAL,
+        "Prazo de Entrega" TEXT,
+        "Local de Entrega" TEXT,
+        "Prazo de Pagamento" TEXT,
+        "Observacoes" TEXT,
+        "Total Liberação" REAL,
+        "Solicitacoes de Compra" TEXT,
+        "Solicitacoes de Consumo" TEXT,
+        "Órgão Solicitante" TEXT,
+        "Ficha" TEXT,
+        "Dotacao" TEXT,
+        "Nº Fornecedor" TEXT,
+        "Nome Fornecedor" TEXT,
+        "CNPJ" TEXT,
+        "Fone" TEXT,
+        "E-mail Fornecedor" TEXT,
+        "Contas" TEXT,
+        FOREIGN KEY ("Nº Empenho") REFERENCES empenhos ("Nº Empenho")
+    )
+'''
+
+NF_TABLE = '''
+    CREATE TABLE IF NOT EXISTS notas_fiscais (
+        "Nº NF" TEXT PRIMARY KEY,
+        "Nº AF" TEXT,
+        "Nº Empenho" TEXT,
+        "Data Emissão" TEXT,
+        "Valor Executado" REAL,
+        "Fornecedor" TEXT,
+        FOREIGN KEY ("Nº AF") REFERENCES autorizacoes ("Nº AF"),
+        FOREIGN KEY ("Nº Empenho") REFERENCES empenhos ("Nº Empenho")
+    )
+'''
+
+NF_ITENS_TABLE = '''
+    CREATE TABLE IF NOT EXISTS notas_fiscais_itens (
+        "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+        "Nº NF" TEXT,
+        "Cód. Material" TEXT,
+        "Descrição" TEXT,
+        "Qtde" REAL,
+        "Vlr. Unitário" REAL,
+        "Valor Executado" REAL,
+        FOREIGN KEY ("Nº NF") REFERENCES notas_fiscais ("Nº NF")
+    )
+'''
+
+AF_ITENS_TABLE = '''
+    CREATE TABLE IF NOT EXISTS autorizacoes_itens (
+        "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+        "Nº AF" TEXT,
+        "Cód. Material" TEXT,
+        "Descrição" TEXT,
+        "Qtde" REAL,
+        "Valor Unitário" REAL,
+        "Valor Total" REAL,
+        FOREIGN KEY ("Nº AF") REFERENCES autorizacoes ("Nº AF")
+    )
+'''

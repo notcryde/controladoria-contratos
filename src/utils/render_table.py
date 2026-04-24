@@ -15,16 +15,18 @@ def render_table(dataframe, table_columns, enable_selection=False, key=None):
         minWidth=100, 
         wrapText=True, 
         autoHeight=True,
-        headerClass='header-center',
+        headerClass='header-center'
     )
     
     grid_builder.configure_pagination(paginationPageSize=15) 
     
+    monetary_keywords = ['Valor', 'Total', 'Liberação', 'Unitário', 'Saldo', 'Executado', 'Empenhado']
+    
     for col in dataframe.columns:
-        if any(word in col for word in ['Valor', 'Total', 'Liberação', 'Unitário']):
+        if any(word in col for word in monetary_keywords):
             grid_builder.configure_column(
                 col, 
-                valueFormatter="x.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})"
+                valueFormatter="x != null ? Number(x).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}) : 'R$ 0,00'"
             )
 
     if enable_selection and 'Ações' in table_columns:

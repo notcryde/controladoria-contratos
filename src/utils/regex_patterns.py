@@ -1,5 +1,4 @@
 # Padrões de RegEx: Solicitações de Consumo
-
 REGEX_SOLIC_CONS = {
     'Nº Solicitação': r'Solicitação Nº:\s*(\d+/\d+)',
     'Data Emissão': r'Data de Emissão:\s*(\d{2}/\d{2}/\d{4})',
@@ -15,13 +14,12 @@ REGEX_SOLIC_CONS = {
     'Unidade Solicitante': r'(?s)Unidade Solicitante:\s*(.*?)(?=\s*Ata RP:|\s*Status:|$)',
     'Órgão Financeiro': r'Órgão Financeiro:\s*(.+?)(?:\n|$)',
     'Unidade Financeira': r'Unidade Financeira:\s*(.+?)(?:\n|$)',
-    'Observação': r'(?s)Observação:\s*(.*?)(?=\nFicha\s*-|\nPrograma:|$)',
+    'Observação': r'(?s)Observação:\s*(.*?)(?=\nFornecedor:|\nFicha\s*-|\nPrograma:|\nJustificativa:|\nPCR\d+|\nVersão|$)',
     'Nome do Fornecedor': r'Fornecedor:\s*(.*?)(?=\s*,?\s*CNPJ:|$)',
     'CNPJ do Fornecedor': r'Fornecedor:.*?[,]?\s*CNPJ:\s*([\d\.\-/]+)',
 }
 
 # Padrões de RegEx: Solicitações de Compras
-
 REGEX_SOLIC_COMPR = {
     'Nº Solicitação': r'Solicitação Nº:\s*(\d+/\d+)',
     'Data Emissão': r'Data de Emissão:\s*(\d{2}/\d{2}/\d{4})',
@@ -43,9 +41,8 @@ REGEX_SOLIC_COMPR = {
 }
 
 # Padrões de RegEx: Empenhos
-
 REGEX_EMP = {
-    'Nº Empenho': r'Número:\s*(\d+/\d+)',
+    'Nº Empenho': r'Número:?\s*(\d+/\d+)',
     'Nº Processo': r'PROCESSO Nº\s*\.+\s*(\d+/\d+)',
     'Valor Empenhado': r'VALOR DESTE EMPENHO\s*\.+\s*([\d\.,]+)',
     'Órgão Solicitante': r'ÓRGÃO\s*:\s*\.+\s*(.+?)(?:\n|$)',
@@ -59,7 +56,6 @@ REGEX_EMP = {
 }
 
 # Padrões de RegEx: Autorizações de Fornecimento
-
 REGEX_AF = {
     'Nº AF': r'A\.F\s*-\s*Nº\s*(\d+/\d+)',
     'Data': r'Data\s*(\d{2}/\d{2}/\d{4})',
@@ -88,12 +84,20 @@ REGEX_AF = {
     'Nome Fornecedor': r'Fornecedor\s+\d+\s+(.+?)(?:\n|$)',
     'CNPJ': r'CNPJ\s+(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})',
     'Fone': r'Fone\s*([\d\s\(\)-]+)',
-    'Email': r'E-mail\s+(.+?)(?:\n|$)',
+    'E-mail Fornecedor': r'E-mail\s+(.+?)(?:\n|$)',
     'Contas': r'Contas\s+(.+?)(?:\n|$)',
 }
 
-# Padrões de RegEx: Notas Fiscais
+# Padrões de RegEx: Itens das AFs (NOVO)
+REGEX_AF_ITEMS = {
+    'Cód. Material': r"^\d+\s+([\d.]+)",
+    'Qtde': r"^\d+\s+[\d.]+\s+([\d.,]+)",
+    'Descrição': r"^\d+\s+[\d.]+\s+[\d.,]+\s+[A-Za-z]+\s+(.*?)\s+[\d.,]+\s+(?:.*?\s+)?[\d.,]+\s*$",
+    'Valor Unitário': r"([\d.,]+)\s+(?:.*?\s+)?[\d.,]+\s*$",
+    'Valor Total': r"([\d.,]+)\s*$"
+}
 
+# Padrões de RegEx: Notas Fiscais
 REGEX_NF = {
     'Nº NF': r'Número N\.F:\s*(\d+)',
     'Data Emissão': r'Data Emissão:\s*(\d{2}/\d{2}/\d{4})',
