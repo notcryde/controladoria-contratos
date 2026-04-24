@@ -1,6 +1,6 @@
-from core.document_processor import process_af, process_empenho, process_solicitacao, process_af_tables, process_nf
-from core.utils import raw_text
-import core.config as cf
+from document_processor import process_af, process_empenho, process_solicitacao, process_af_tables, process_nf
+from utils import raw_text
+import config as cf
 
 if __name__ == '__main__':
     print('1 - Empenho')
