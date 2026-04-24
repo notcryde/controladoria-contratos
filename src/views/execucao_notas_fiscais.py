@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-from src.utils import modal_execucao_notas_fiscais
+from src.utils.modal_execucao_notas_fiscais import modal_execucao_notas_fiscais
 from src.utils.database import load_data
 from src.utils.render_table import render_table
 from src.utils.constants import EXEC_NF_HEADERS

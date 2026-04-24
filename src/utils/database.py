@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 
-from constants import (
+from src.utils.constants import (
     SOLIC_COMP_TABLE, SOLIC_CONS_TABLE, EMPENHOS_TABLE, 
     AF_TABLE, NF_TABLE, NF_ITENS_TABLE, AF_ITENS_TABLE
 )

@@ -3,7 +3,7 @@ import streamlit as st
 
 from src.utils.database import load_data
 from src.utils.render_table import render_table
-from src.utils.constants import EXEC_NF_HEADERS, MODAL_ACOMP_EXEC_HEADERS
+from src.utils.constants import MODAL_ACOMP_EXEC_HEADERS
 
 
 @st.dialog('Acompanhamento de Itens', width='large')
