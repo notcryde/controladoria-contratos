@@ -1,4 +1,4 @@
-from core.utils import print_section
+import print_section
 from src.utils.regex_patterns import REGEX_AF, REGEX_EMP, REGEX_NF, REGEX_SOLIC_COMPR, REGEX_SOLIC_CONS
 
 def parse_af(text):

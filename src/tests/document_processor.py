@@ -1,9 +1,5 @@
 from core.config import AF_SAMPLES, EMP_SAMPLES, SOLIC_SAMPLES, NF_SAMPLES
-from core.utils import extract, extract_tables_from_pdf
-from core.af_parser import parse_af
-from core.empenho_parser import parse_empenho
-from core.solicitacao_parser import parse_solicitacao 
-from core.nf_parser import parse_nf # Novo import
+from tests.parsers import parse_af, parse_empenho, parse_solicitacao, parse_nf
 
 def process_nf():
     if not NF_SAMPLES.exists():
