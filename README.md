@@ -2,7 +2,7 @@
 
 O projeto Controladoria de Contratos - SEDIS é uma plataforma de gestão e acompanhamento de fluxos administrativos públicos, desenvolvida para centralizar o processamento de documentos fundamentais como Solicitações de Compra/Consumo, Notas de Empenho, Autorizações de Fornecimento (AF) e Notas Fiscais.
 
-O sistema utiliza técnicas de extração de dados via Processamento de Linguagem Natural (Regex) em documentos PDF, automatizando a inserção de informações em uma base de dados estruturada e permitindo o acompanhamento financeiro em tempo real da execução contratual.
+O sistema utiliza técnicas de extração de dados via Expressões Regulares em documentos PDF, automatizando a inserção de informações em uma base de dados estruturada e permitindo o acompanhamento financeiro em tempo real da execução contratual.
 
 ## Principais Funcionalidades
 
