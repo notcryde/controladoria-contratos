@@ -45,4 +45,10 @@ def modal_execucao_notas_fiscais(autorizacoes_fornecimento_id):
     merged['Saldo (Valor)'] = merged['Valor Empenhado'] - merged['Valor Executado']
     
     dataframe_final = merged[MODAL_ACOMP_EXEC_HEADERS]
-    render_table(dataframe_final, MODAL_ACOMP_EXEC_HEADERS)
+    
+    render_table(
+        dataframe_final, 
+        MODAL_ACOMP_EXEC_HEADERS,
+        key=f"modal_exec_items_{autorizacoes_fornecimento_id}",
+        export_name=f"detalhamento_itens_af_{autorizacoes_fornecimento_id.replace('/', '-')}"
+    )

@@ -64,7 +64,8 @@ _, selected_rows = render_table(
     dataframe_execucao_notas_fiscais, 
     EXEC_NF_HEADERS, 
     enable_selection=True, 
-    key=f'exec_grid_{st.session_state.execucao_aggrid_key}'
+    key=f'exec_grid_{st.session_state.execucao_aggrid_key}',
+    export_name='execucao_notas_fiscais'
 )
 
 if selected_rows is not None and len(selected_rows) > 0:

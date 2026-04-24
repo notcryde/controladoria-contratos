@@ -101,8 +101,8 @@ MODAL_ACOMP_EXEC_HEADERS = [
     'Cód. Material', 
     'Descrição', 
     'Qtde Empenhado',
-    'Qtde Executado',
     'Valor Empenhado', 
+    'Qtde Executado',
     'Valor Executado',
     'Saldo (Qtde)',
     'Saldo (Valor)'

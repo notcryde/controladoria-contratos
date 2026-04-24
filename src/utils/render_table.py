@@ -1,10 +1,16 @@
 import pandas as pd
 import streamlit as st
+from datetime import datetime
 from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode, DataReturnMode, JsCode
+from src.utils.exporter import convert_dataframe_to_csv
+from src.utils.constants import LABEL_BTN_EXPORTAR
 
-def render_table(dataframe, table_columns, enable_selection=False, key=None):
+def render_table(dataframe, table_columns, enable_selection=False, key=None, export_name=None):
     if dataframe.empty:
         return pd.DataFrame(columns=table_columns), None
+
+    # Espaço reservado para o botão acima da tabela
+    container_superior = st.container()
 
     grid_builder = GridOptionsBuilder.from_dataframe(dataframe)
     
@@ -23,6 +29,7 @@ def render_table(dataframe, table_columns, enable_selection=False, key=None):
     monetary_keywords = ['Valor', 'Total', 'Liberação', 'Unitário', 'Saldo', 'Executado', 'Empenhado']
     
     for col in dataframe.columns:
+        # Formata como moeda apenas se for palavra-chave monetária E não for uma coluna de Quantidade
         if any(word in col for word in monetary_keywords) and 'Qtde' not in col:
             grid_builder.configure_column(
                 col, 
@@ -95,5 +102,20 @@ def render_table(dataframe, table_columns, enable_selection=False, key=None):
         key=key
     )
 
+    # Pegamos os dados da resposta (respeita filtros e ordenação do usuário)
     df_returned = pd.DataFrame(grid_response['data']) if grid_response['data'] is not None else pd.DataFrame(columns=table_columns)
+    
+    if not df_returned.empty:
+        csv_data = convert_dataframe_to_csv(df_returned)
+        data_string = datetime.now().strftime("%d-%m-%Y")
+        nome_arquivo = f"{export_name if export_name else 'tabela'}-{data_string}.csv"
+        
+        container_superior.download_button(
+            label=LABEL_BTN_EXPORTAR,
+            data=csv_data,
+            file_name=nome_arquivo,
+            mime='text/csv',
+            key=f"btn_export_{key}"
+        )
+
     return df_returned, grid_response.get('selected_rows', None)

@@ -49,18 +49,18 @@ for tab, title in zip(tabs, TABS_TITLES):
         if title == TABS_TITLES[0]:
             with st.expander(label=TIPOS_DOCS[0], expanded=True):
                 dataframe_consumo = load_dataframe(SOLIC_CONS_HEADERS, 'solicitacoes_consumo', load_data)
-                render_table(dataframe_consumo, SOLIC_CONS_HEADERS, key='grid_consumo')
+                render_table(dataframe_consumo, SOLIC_CONS_HEADERS, key='grid_consumo', export_name='solicitacoes_consumo')
             with st.expander(label=TIPOS_DOCS[1], expanded=True):
                 dataframe_compras = load_dataframe(SOLIC_COMP_HEADERS, 'solicitacoes_compras', load_data)
-                render_table(dataframe_compras, SOLIC_COMP_HEADERS, key='grid_compras')
+                render_table(dataframe_compras, SOLIC_COMP_HEADERS, key='grid_compras', export_name='solicitacoes_compras')
 
         elif title == TABS_TITLES[1]:
             dataframe_empenhos = load_dataframe(EMPENHOS_HEADERS, 'empenhos', load_data)
-            render_table(dataframe_empenhos, EMPENHOS_HEADERS, key='grid_empenhos')
+            render_table(dataframe_empenhos, EMPENHOS_HEADERS, key='grid_empenhos', export_name='empenhos')
 
         elif title == TABS_TITLES[2]:
             dataframe_autorizacoes = load_dataframe(AF_HEADERS, 'autorizacoes', load_data)
-            render_table(dataframe_autorizacoes, AF_HEADERS, key='grid_af')
+            render_table(dataframe_autorizacoes, AF_HEADERS, key='grid_af', export_name='autorizacoes_fornecimento')
 
         elif title == TABS_TITLES[3]:
             dataframe_notas_fiscais = load_dataframe(NOTAS_FISCAIS_HEADERS, 'notas_fiscais', load_data)
@@ -69,7 +69,8 @@ for tab, title in zip(tabs, TABS_TITLES):
                 dataframe_notas_fiscais, 
                 NOTAS_FISCAIS_HEADERS, 
                 enable_selection=True, 
-                key=f'grid_notas_fiscais_{st.session_state.aggrid_reset_key}'
+                key=f'grid_notas_fiscais_{st.session_state.aggrid_reset_key}',
+                export_name='notas_fiscais'
             )
             
             if selected_rows is not None and len(selected_rows) > 0:
