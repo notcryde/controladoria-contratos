@@ -77,12 +77,12 @@ def process_files(uploaded_files, regex_patterns, save_document, table_name, ext
         extracted_data = extract_data_using_regex(pdf_text, regex_patterns)
         extracted_data.update(extra_data)
         
-        # Herança de Atributos do Empenho para a AF
         if table_name == 'autorizacoes':
             num_empenho = extracted_data.get('Nº Empenho')
             if empenhos_df is not None and not empenhos_df.empty and num_empenho:
                 emp_row = empenhos_df[empenhos_df['Nº Empenho'] == num_empenho]
                 if not emp_row.empty:
+                    extracted_data['Nº Processo'] = emp_row.iloc[0]['Nº Processo']                    
                     extracted_data['Valor Empenhado'] = emp_row.iloc[0]['Valor Empenhado']
                     extracted_data['Nome Fornecedor'] = emp_row.iloc[0]['Nome Fornecedor']
                     extracted_data['E-mail Fornecedor'] = emp_row.iloc[0]['E-mail Fornecedor']
