@@ -44,7 +44,7 @@ REGEX_SOLIC_COMPR = {
 
 # Padrões de RegEx: Empenhos
 
-EMP_PATTERNS = {
+REGEX_EMP = {
     'Nº Empenho': r'Número:\s*(\d+/\d+)',
     'Nº Processo': r'PROCESSO Nº\s*\.+\s*(\d+/\d+)',
     'Valor Empenhado': r'VALOR DESTE EMPENHO\s*\.+\s*([\d\.,]+)',
@@ -60,7 +60,7 @@ EMP_PATTERNS = {
 
 # Padrões de RegEx: Autorizações de Fornecimento
 
-AF_PATTERNS = {
+REGEX_AF = {
     'Nº AF': r'A\.F\s*-\s*Nº\s*(\d+/\d+)',
     'Data': r'Data\s*(\d{2}/\d{2}/\d{4})',
     'Valor Empenhado': r'Empenho.*?valor:\s*([\d\.,]+)',
@@ -94,7 +94,7 @@ AF_PATTERNS = {
 
 # Padrões de RegEx: Notas Fiscais
 
-NF_PATTERNS = {
+REGEX_NF = {
     'Nº NF': r'Número N\.F:\s*(\d+)',
     'Data Emissão': r'Data Emissão:\s*(\d{2}/\d{2}/\d{4})',
     'Valor Executado': r'Vlr\. Total:\s*([\d\.,]+)',
