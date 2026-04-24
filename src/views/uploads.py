@@ -1,5 +1,6 @@
 import streamlit as st
 import sqlite3
+from datetime import date
 
 from src.utils.constants import (
     LABEL_TIPO_DOC, TIPOS_DOCS,
@@ -15,7 +16,7 @@ from src.utils.constants import (
 )
 
 from src.utils.regex_patterns import (
-    REGEX_SOLIC_CONS, REGEX_SOLIC_COMPR, REGEX_EMP, REGEX_AF, REGEX_NF, REGEX_NF_ITEMS
+    REGEX_SOLIC_CONS, REGEX_SOLIC_COMPR, REGEX_EMP, REGEX_AF, REGEX_NF, REGEX_NF_ITEMS, REGEX_AF_ITEMS
 )
 
 from src.utils.database import save_document, get_solicitacoes_por_tipo
@@ -25,7 +26,7 @@ DOCUMENT_MAPPING = {
     'Solicitação de Consumo': ('solicitacoes_consumo', REGEX_SOLIC_CONS, None),
     'Solicitação de Compras': ('solicitacoes_compras', REGEX_SOLIC_COMPR, None),
     'Empenho': ('empenhos', REGEX_EMP, None),
-    'Autorização de Fornecimento': ('autorizacoes', REGEX_AF, None),
+    'Autorização de Fornecimento': ('autorizacoes', REGEX_AF, REGEX_AF_ITEMS),
     'Nota Fiscal': ('notas_fiscais', REGEX_NF, REGEX_NF_ITEMS)
 }
 
@@ -35,8 +36,8 @@ current_document_type = st.session_state.get('document_type_selection', TIPOS_DO
 is_request_type = current_document_type in ['Solicitação de Consumo', 'Solicitação de Compras']
 
 input_numero_processo = ''
-input_vigencia_inicial = ''
-input_vigencia_final = ''
+input_vigencia_inicial = None
+input_vigencia_final = None
 input_numero_solicitacao = ''
 
 if is_request_type:
@@ -69,9 +70,9 @@ else:
     elif current_document_type == 'Autorização de Fornecimento':
         col_start, col_end = st.columns(2)
         with col_start:
-            input_vigencia_inicial = st.text_input(LABEL_VIG_INICIAL)
+            input_vigencia_inicial = st.date_input(LABEL_VIG_INICIAL, format='DD/MM/YYYY')
         with col_end:
-            input_vigencia_final = st.text_input(LABEL_VIG_FINAL)
+            input_vigencia_final = st.date_input(LABEL_VIG_FINAL, format='DD/MM/YYYY')
 
 files_buffer = st.file_uploader(
     LABEL_UPLOAD_SECTION,
@@ -92,8 +93,11 @@ if files_buffer:
             extra_data['Nº Solicitação'] = input_numero_solicitacao
             
         elif current_document_type == 'Autorização de Fornecimento':
-            extra_data['Vigência Inicial'] = input_vigencia_inicial
-            extra_data['Vigência Final'] = input_vigencia_final
+            if input_vigencia_final < input_vigencia_inicial:
+                st.error('Erro: A Vigência Final não pode ser anterior à Vigência Inicial.')
+                st.stop()
+            extra_data['Vigência Inicial'] = input_vigencia_inicial.strftime('%d/%m/%Y')
+            extra_data['Vigência Final'] = input_vigencia_final.strftime('%d/%m/%Y')
 
         try:
             process_files(files_buffer, regex_patterns, save_document, table_name, extra_data, regex_items)
