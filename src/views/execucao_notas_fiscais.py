@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from datetime import datetime
 
 from src.utils.modal_execucao_notas_fiscais import modal_execucao_notas_fiscais
 from src.utils.database import load_data
@@ -43,9 +44,12 @@ if not autorizacoes_fornecimento_dataframe.empty:
             
         saldo = total_empenho - total_execucao
         
+        data_atual_str = datetime.now().strftime('%d/%m/%Y')
+
         prazo = calcular_prazo(
-            autorizacao_fornecimento.get('Vigência Inicial', ''), 
-            autorizacao_fornecimento.get('Vigência Final', ''))
+            data_atual_str, 
+            autorizacao_fornecimento.get('Vigência Final', '')
+        )
         
         execucao_notas_fiscais_data.append({
             'Nº AF': numero_autorizacao_fornecimento,
