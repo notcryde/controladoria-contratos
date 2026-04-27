@@ -1,35 +1,35 @@
 # Controladoria de Contratos - SEDIS
 
-O projeto Controladoria de Contratos - SEDIS é uma plataforma de gestão e acompanhamento de fluxos administrativos públicos, desenvolvida para centralizar o processamento de documentos fundamentais como Solicitações de Compra/Consumo, Notas de Empenho, Autorizações de Fornecimento (AF) e Notas Fiscais.
-
-O sistema utiliza técnicas de extração de dados via Expressões Regulares em documentos PDF, automatizando a inserção de informações em uma base de dados estruturada e permitindo o acompanhamento financeiro em tempo real da execução contratual.
+O sistema de controladoria de contratos é uma plataforma de gestão e acompanhamentos de fluxos administrativos da Secretaria de Desenvolvimento e Inclusão Social (SEDIS), unidade da Prefeitura Municipal de Taubaté. Esse projeto foi desenvolvido para centralizar o processamento de documentos fundamentais como Solicitações de Compra/Consumo, Empenhos, Autorizações de Fornecimento (AFs) e Notas Fiscais.
 
 ## Principais Funcionalidades
 
-### 1. Processamento Inteligente de Documentos
+### 1. Upload de Documentos
 
-Extração automatizada de metadados de arquivos PDF utilizando expressões regulares customizadas. O sistema identifica automaticamente:
-- Dados de fornecedores (CNPJ, Razão Social, Contato).
-- Valores empenhados, executados e saldos remanescentes.
-- Prazos de vigência e datas de emissão.
-- Itens detalhados de Notas Fiscais e Autorizações de Fornecimento.
+O sistema permite realizar o upload de cinco tipos de documentos: 
+- Solicitações de Consumo;
+- Solicitações de Compras;
+- Empenhos;
+- Autorizações de Fornecimento;
+- Notas Fiscais;
 
 ### 2. Gestão Documental Estruturada
-Visualização centralizada de todos os documentos processados, organizada por abas interativas:
+
+O sistema permite visualizar todos os documentos processados, organizados por abas interativas:
 - Filtros avançados e ordenação via AgGrid.
 - Detalhamento de itens por modal (pop-up) sem recarregamento de página.
 - Exportação de dados para formato CSV (padrão PT-BR).
 
-### 3. Acompanhamento de Execução Financeira
-Módulo dedicado para análise de saúde financeira dos contratos:
+### Execução de Notas Fiscais
+
+O sistema permite analisar a saúde financeira de contratos:
 - Cálculo automático de saldo atual (Empenhado vs. Executado).
 - Monitoramento de prazos de vigência remanescentes.
-- Detalhamento técnico por item de material/serviço, permitindo rastrear o que já foi entregue e o que resta a executar.
+- Detalhamento técnico por item de material/serviço, permitindo rastrear o que já foi entregue e o que resta executar.
 
 ## Arquitetura Técnica
 
-O projeto foi construído seguindo princípios de modularização e separação de preocupações (SoC):
-
+O projeto foi construído seguindo princípios de modularização e separação de preocupações:
 - **Frontend:** Streamlit (v1.55.0) para interface reativa.
 - **Processamento de Dados:** Pandas para manipulação de dataframes e NumPy para cálculos vetoriais.
 - **Extração de PDF:** Pdfplumber para análise de texto e tabelas em documentos PDF.
@@ -41,19 +41,12 @@ O projeto foi construído seguindo princípios de modularização e separação 
 ```text
 sedis-controladoria/
 ├── src/
-│   ├── utils/                        # Lógica de negócio, banco de dados e processamento
-│   │   ├── database.py               # Operações CRUD e persistência SQLite
-│   │   ├── pdf_parser.py             # Motor de extração de texto e lógica de processamento
-│   │   ├── regex_patterns.py         # Padrões de extração para cada tipo de documento
-│   │   └── render_table.py           # Configurações globais das grades AgGrid
-│   ├── views/                        # Páginas da aplicação Streamlit
-│   │   ├── uploads.py                # Interface de entrada de novos documentos
-│   │   ├── gestao_documental.py      # Visualização geral da base de dados
-│   │   └── execucao_notas_fiscais.py # Relatórios de execução financeira
-│   └── tests/                        # Amostras e scripts de validação de parsers
-├── controladoria.db                  # Banco de dados SQLite
-├── requirements.txt                  # Dependências do projeto
-└── streamlit_app.py                  # Ponto de entrada da aplicação
+│   ├── utils/            # Lógica de negócio, banco de dados e processamento
+│   ├── views/            # Páginas da aplicação Streamlit
+│   └── tests/            # Amostras e scripts de validação de parsers
+├── controladoria.db      # Banco de dados SQLite
+├── requirements.txt      # Dependências do projeto
+└── streamlit_app.py      # Ponto de entrada da aplicação
 ```
 
 ## Instalação e Execução
