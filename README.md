@@ -8,7 +8,7 @@ O sistema visa substituir controles manuais por uma plataforma centralizada que 
 
 ## Funcionalidades Principais
 
-- **Extração Automatizada (OCR/Texto):** Leitura de arquivos PDF (Solicitações, Empenhos, AFs e NFs) utilizando `pdfplumber` e expressões regulares (`re`) para extração estruturada de dados.
+- **Extração Automatizada:** Leitura de arquivos PDF (Solicitações, Empenhos, AFs e NFs) utilizando `pdfplumber` e expressões regulares (`re`) para extração estruturada de dados.
 - **Gestão de Documentos (CRUD):** Visualização, edição e acompanhamento de todos os documentos processados através de interfaces interativas.
 - **Controle de Saldos em Tempo Real:** Cálculo automático do saldo financeiro e quantitativo. O sistema impede o lançamento de Notas Fiscais cujos valores ultrapassem o limite estabelecido na Autorização de Fornecimento.
 - **Monitoramento de Prazos:** Acompanhamento dinâmico da vigência de contratos e autorizações, calculando os dias restantes com base na data atual.
