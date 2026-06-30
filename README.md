@@ -67,7 +67,9 @@ O banco de dados relacional foi estruturado para refletir a hierarquia documenta
 - **Compras (`purchase_requests`):** Entidade filha (1:1).
 - **Consumo (`consumption_requests`):** Entidade filha (1:1).
 
-### **2. Empenhos (`commitments`):** Possui relação 1:1 com uma Solicitação. O vínculo é estabelecido manualmente pelo usuário durante o processamento do PDF.
+### **2. Empenhos (`commitments`):** 
+
+- Possui relação 1:1 com uma Solicitação. O vínculo é estabelecido manualmente pelo usuário durante o processamento do PDF.
 
 ### **3. Autorizações de Fornecimento (`authorizations`):** 
 
