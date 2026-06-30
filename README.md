@@ -75,16 +75,16 @@ O banco de dados relacional foi estruturado para refletir a hierarquia documenta
 
 - Possui relação 1:1 com um Empenho. Exige a definição manual de vigência (Data Inicial e Final).
 
-### **Itens da AF (`authorization_items`):** 
+### **4. Itens da AF (`authorization_items`):** 
 
 - Relação 1:N com a AF.
-  Armazena os produtos/serviços autorizados e compõe o **saldo inicial** (imutável para fins de auditoria).
+- Armazena os produtos/serviços autorizados e compõe o **saldo inicial** (imutável para fins de auditoria).
 
-### **4. Notas Fiscais (`invoices`):** 
+### **5. Notas Fiscais (`invoices`):** 
 
 - Possui relação 1:N com uma AF (várias NFs podem abater o saldo de uma mesma AF).
 
-### **Itens da NF (`invoice_items`):**
+### **6. Itens da NF (`invoice_items`):**
 
 - Relação 1:N com a NF. Representa o consumo efetivo do saldo autorizado.
 
