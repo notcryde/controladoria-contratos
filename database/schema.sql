@@ -77,7 +77,6 @@ CREATE TABLE IF NOT EXISTS invoices (
     invoice_number TEXT PRIMARY KEY,
     authorization_number TEXT NOT NULL,
     issue_date DATE,
-    executed_value REAL,
     FOREIGN KEY (authorization_number) REFERENCES authorizations(authorization_number) ON DELETE CASCADE
 );
 
