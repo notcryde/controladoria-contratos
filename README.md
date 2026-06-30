@@ -69,13 +69,22 @@ O banco de dados relacional foi estruturado para refletir a hierarquia documenta
 
 ### **2. Empenhos (`commitments`):** Possui relação 1:1 com uma Solicitação. O vínculo é estabelecido manualmente pelo usuário durante o processamento do PDF.
 
-### **3. Autorizações de Fornecimento (`authorizations`):** Possui relação 1:1 com um Empenho. Exige a definição manual de vigência (Data Inicial e Final).
+### **3. Autorizações de Fornecimento (`authorizations`):** 
 
-- **Itens da AF (`authorization_items`):** Relação 1:N com a AF. Armazena os produtos/serviços autorizados e compõe o **saldo inicial** (imutável para fins de auditoria).
+- Possui relação 1:1 com um Empenho. Exige a definição manual de vigência (Data Inicial e Final).
 
-### **4. Notas Fiscais (`invoices`):** Possui relação 1:N com uma AF (várias NFs podem abater o saldo de uma mesma AF).
+### **Itens da AF (`authorization_items`):** 
 
-- **Itens da NF (`invoice_items`):** Relação 1:N com a NF. Representa o consumo efetivo do saldo autorizado.
+- Relação 1:N com a AF.
+  Armazena os produtos/serviços autorizados e compõe o **saldo inicial** (imutável para fins de auditoria).
+
+### **4. Notas Fiscais (`invoices`):** 
+
+- Possui relação 1:N com uma AF (várias NFs podem abater o saldo de uma mesma AF).
+
+### **Itens da NF (`invoice_items`):**
+
+- Relação 1:N com a NF. Representa o consumo efetivo do saldo autorizado.
 
 ## Regras de Negócio e Restrições
 
