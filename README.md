@@ -62,18 +62,18 @@ controladoria-contratos/
 
 O banco de dados relacional foi estruturado para refletir a hierarquia documental do processo de compras públicas/corporativas:
 
-1. **Solicitações (`requests`):** Entidade mestre.
+### **1. Solicitações (`requests`):** Entidade mestre.
 
 - **Compras (`purchase_requests`):** Entidade filha (1:1).
 - **Consumo (`consumption_requests`):** Entidade filha (1:1).
 
-2. **Empenhos (`commitments`):** Possui relação 1:1 com uma Solicitação. O vínculo é estabelecido manualmente pelo usuário durante o processamento do PDF.
+### **2. Empenhos (`commitments`):** Possui relação 1:1 com uma Solicitação. O vínculo é estabelecido manualmente pelo usuário durante o processamento do PDF.
 
-3. **Autorizações de Fornecimento (`authorizations`):** Possui relação 1:1 com um Empenho. Exige a definição manual de vigência (Data Inicial e Final).
+### **3. Autorizações de Fornecimento (`authorizations`):** Possui relação 1:1 com um Empenho. Exige a definição manual de vigência (Data Inicial e Final).
 
 - **Itens da AF (`authorization_items`):** Relação 1:N com a AF. Armazena os produtos/serviços autorizados e compõe o **saldo inicial** (imutável para fins de auditoria).
 
-4. **Notas Fiscais (`invoices`):** Possui relação 1:N com uma AF (várias NFs podem abater o saldo de uma mesma AF).
+### **4. Notas Fiscais (`invoices`):** Possui relação 1:N com uma AF (várias NFs podem abater o saldo de uma mesma AF).
 
 - **Itens da NF (`invoice_items`):** Relação 1:N com a NF. Representa o consumo efetivo do saldo autorizado.
 
